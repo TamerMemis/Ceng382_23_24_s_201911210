@@ -98,6 +98,20 @@
   <div id="failedMessage" style="display: none;"></div>
 </div>
 
+<div class="p-5 text-center bg-body-tertiary rounded-3">
+    <h1 class="text-body-emphasis">Addition Form</h1>
+    <form id="sumForm">
+      <label for="num1">First num:</label><br>
+      <input type="text" id="num1" name="num1"><br>
+      <label for="num2">Second num:</label><br>
+      <input type="text" id="num2" name="num2"><br><br>
+      <input class="d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill" type="submit" value="Submit">
+      <button id="resetButton" class="btn btn-danger btn-lg px-4 rounded-pill">Reset</button>
+    </form>
+    <div id="result"></div>
+  </div>
+
+
 
 <div class="b-example-divider"></div>
 
@@ -140,8 +154,33 @@
 </div>
 
 <div class="b-example-divider"></div>
-<script src="~/wwwroot/js/lab5.js"></script>
-
-<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="~/js/lab5.js"></script>
+<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+ <script>
+    document.getElementById('sumForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent default form submission
+    
+      // Get values from input fields
+      const num1 = parseFloat(document.getElementById('num1').value);
+      const num2 = parseFloat(document.getElementById('num2').value);
+    
+      // Input validation (optional, but recommended)
+      if (isNaN(num1) || isNaN(num2)) {
+        alert('Please enter valid numbers.');
+        return; // Exit if invalid input
+      }
+    
+      // Calculate the sum
+      const sum = num1 + num2;
+    
+      // Display the result in the #result div
+      document.getElementById('result').textContent = `The sum is: ${sum}`;
+    });
+
+    // Add event listener to reset button
+    document.getElementById('resetButton').addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent default button action
+      document.getElementById('result').textContent = ''; // Clear the result
+    });
+  </script>
 </body>
